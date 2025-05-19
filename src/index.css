@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --header-height: 64px;
+  --sidebar-width: 250px;
+}
+
+html, body {
+  @apply h-full m-0 p-0 font-sans text-gray-800 bg-gray-50;
+}
+
+#root {
+  @apply h-full;
+}
+
+/* Make app layout scrollable */
+@layer utilities {
+  .h-screen-minus-header {
+    height: calc(100vh - var(--header-height));
+  }
+  
+  .w-sidebar {
+    width: var(--sidebar-width);
+  }
+  
+  .ml-sidebar {
+    margin-left: var(--sidebar-width);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded hover:bg-gray-400 transition-colors;
+}
+
+/* Animations */
+.slide-in-from-right {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Fixed height containers */
+.content-height {
+  height: calc(100vh - var(--header-height));
+}
+
+/* Progress indicator */
+.progress-ring {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset 0.3s ease;
+}
